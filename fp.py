@@ -37,7 +37,7 @@ class CountFP():
         f.write("{},{}\n".format(name, ",".join(kp)))
 
 def AlgorithmSelecter(algo):
-    if algo == 0: #ORB
+    if algo == 0: 
         return cv2.ORB_create()
     elif algo == 1:
         return cv2.AgastFeatureDetector_create()
@@ -57,7 +57,7 @@ def AlgorithmSelecter(algo):
         print("[ ERROR ] AlgorithmSelecter : Receive unexpected input")
         exit()
 
-########## Main処�? ###########
+########## Main ###########
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-i","--input_dir", help="Directry which your images saved", nargs="?", default="./images/")
@@ -83,7 +83,7 @@ algorithm = [
     'BLOB',
 ]
 
-filenames = [str(filename) for filename in Path(image_dir).glob('*') if filename.suffix in ['.bmp', '.jpg', '.png']] #入力画像�?��?�パスを�?��?�に格�?
+filenames = [str(filename) for filename in Path(image_dir).glob('*') if filename.suffix in ['.bmp', '.jpg', '.png']] #陷茨ｽ･陷牙ｸｷ蛻､陷剃ｸ�?蜉ｱ?�ｽｮ郢昜ｻ｣縺帷ｹｧ蟶�?讎�?蜉ｱ竊楢ｭｬ�ｽｼ驍�?
 
 
 if len(filenames) == 0:
@@ -111,10 +111,11 @@ if countmode:
 if args.save_log:
     f = open(outfilename, mode='w')
 
-os.makedirs(outimage_dir, exist_ok="True") #出力ディレクトリの作�??
-##########出力開�?##########
+os.makedirs(outimage_dir, exist_ok="True") 
 
-start_time = time.perf_counter() #時間計測用
+########## detect and output start ##########
+
+start_time = time.perf_counter() # timer
 finder = AlgorithmSelecter(algonum)
 
 for i, imagename in enumerate(filenames, 1):
@@ -122,9 +123,9 @@ for i, imagename in enumerate(filenames, 1):
     img = cv2.imread(imagename)
     kp = finder.detect(img)
 
-    basename = os.path.basename(imagename) #パスをファイル名に変換
+    basename = os.path.basename(imagename)
     if args.save_log:
-        f.write(basename + ',' + str(len(kp)) + "\n") #ログをファイルに出�?
+        f.write(basename + ',' + str(len(kp)) + "\n") 
     
     img2 = cv2.drawKeypoints(img,kp,None,color=(0,255,0))
     outpath = outimage_dir + basename
