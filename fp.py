@@ -83,7 +83,7 @@ algorithm = [
     'BLOB',
 ]
 
-filenames = [str(filename) for filename in Path(image_dir).glob('*') if filename.suffix in ['.bmp', '.jpg', '.png']] #陷茨ｽ･陷牙ｸｷ蛻､陷剃ｸ�?蜉ｱ?�ｽｮ郢昜ｻ｣縺帷ｹｧ蟶�?讎�?蜉ｱ竊楢ｭｬ�ｽｼ驍�?
+filenames = [str(filename) for filename in Path(image_dir).glob('*') if filename.suffix in ['.bmp', '.jpg', '.png']]
 
 
 if len(filenames) == 0:
@@ -138,4 +138,4 @@ for i, imagename in enumerate(filenames, 1):
 print("\n[ Execution time : {:.7f} ]".format(time.perf_counter() - start_time))
 
 if args.save_log:
-f.close()
+    f.close()
